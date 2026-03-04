@@ -150,6 +150,11 @@ function collectPages(): DocPage[] {
     const sectionMetaPath = path.join(sectionDir, "_meta.js");
 
     const sectionValue = rootMeta[sectionKey] ?? {};
+
+    if (typeof sectionValue === "object" && sectionValue.display === "hidden") {
+      continue;
+    }
+
     const sectionTitle =
       typeof sectionValue === "object"
         ? extractTitle(sectionValue)
